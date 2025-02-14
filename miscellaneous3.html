@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRACKIT CTF</title>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .hidden {
+            display: none;
+        }
+        form {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            display: block;
+            margin: 10px 0;
+            padding: 8px;
+            width: 100%;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form onsubmit="return checkLogin(event)">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Login</button>
+    </form>
+    
+    <script>
+        function decodeBase64(str) {
+            return decodeURIComponent(escape(window.atob(str)));
+        }
+
+        function checkLogin(event) {
+            event.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            
+            if (username === decodeBase64('YWRtaW4=') && password === decodeBase64('Y3JhY2tpdDIwMjU=')) {
+                window.location.href = 'https://t.ly/HjjRl';
+            } else {
+                alert('Invalid Credentials');
+            }
+        }
+    </script>
+</body>
+</html>
